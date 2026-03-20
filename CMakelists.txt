@@ -77,3 +77,23 @@ foreach(EXERCISE ${EXERCISES})
     target_include_directories(${EXERCISE} PRIVATE ${CMAKE_SOURCE_DIR}/include/glad ${glm_SOURCE_DIR} ${stb_image_SOURCE_DIR})
     target_link_libraries(${EXERCISE} glfw ${OPENGL_LIBS})
 endforeach()
+
+file(GLOB_RECURSE EX_AULA_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/ExerciciosAula/*.cpp)
+
+foreach(src IN LISTS EX_AULA_SOURCES)
+  # src = .../src/ExerciciosAula/ModuloX/AlgumArquivo.cpp
+  file(RELATIVE_PATH rel ${CMAKE_SOURCE_DIR}/src/ExerciciosAula ${src}) # e.g. ModuloX/AlgumArquivo.cpp
+  get_filename_component(fname ${rel} NAME_WE)                          # AlgumArquivo
+  get_filename_component(dir ${rel} DIRECTORY)                          # ModuloX or Sub/Modulo
+  string(REPLACE "\\" "_" dir_safe ${dir})
+  string(REPLACE "/"  "_" dir_safe ${dir_safe})
+  if(dir_safe STREQUAL "")
+    set(target_name ${fname})
+  else()
+    set(target_name ${dir_safe}_${fname})
+  endif()
+
+  add_executable(${target_name} ${src} ${GLAD_C_FILE})
+  target_include_directories(${target_name} PRIVATE ${CMAKE_SOURCE_DIR}/include/glad ${glm_SOURCE_DIR} ${stb_image_SOURCE_DIR})
+  target_link_libraries(${target_name} glfw ${OPENGL_LIBS})
+endforeach()
