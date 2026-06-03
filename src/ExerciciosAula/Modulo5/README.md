@@ -70,7 +70,7 @@ cmake --build .
 
 Abaixo está o print da execução do programa:
 
-![Resultado](../../../assets/Screenshots/Modulo5/RespostaAoDesafio/result.mp4)
+![Resultado](https://i.imgur.com/Uad4sX9.gif)
 
 ---
 
