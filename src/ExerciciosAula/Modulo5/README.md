@@ -68,7 +68,7 @@ cmake --build .
 
 ## 🖼️ Resultado
 
-Abaixo está o print da execução do programa:
+Abaixo está o gif da execução do programa:
 
 ![Resultado](https://i.imgur.com/Uad4sX9.gif)
 
